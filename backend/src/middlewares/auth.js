@@ -1,7 +1,18 @@
+const jwt = require('jsonwebtoken');
+const UnauthorizedError = require('../errors/UnauthorizedError');
+
 module.exports = (req, res, next) => {
-  req.user = {
-    _id: '60611d4a171c1512c482f32f',
-  };
+  const { token } = req.cookies;
+  if (!token) throw new UnauthorizedError('Необходима авторизация');
+
+  let payload;
+  try {
+    payload = jwt.verify(token, 'super-secret-key');
+  } catch (err) {
+    throw new UnauthorizedError('Необходима авторизация');
+  }
+
+  req.user = payload;
 
   next();
 };

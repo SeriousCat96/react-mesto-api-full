@@ -12,7 +12,6 @@ function getValidationMessage(err) {
 
 module.exports.getError = (err, message) => {
   if (err instanceof HttpError) return err;
-  if (err.code === MONGO_ERROR_CONFLICT) return new ConflictError(message || err);
 
   switch (err.name) {
     case 'CastError':
@@ -21,6 +20,10 @@ module.exports.getError = (err, message) => {
 
     case 'ValidationError':
       return new BadRequestError(getValidationMessage(err));
+
+    case 'MongoError':
+      if (err.code === MONGO_ERROR_CONFLICT) return new ConflictError(err.keyValue, message);
+      return new Error(message);
 
     default:
       return new Error(message);

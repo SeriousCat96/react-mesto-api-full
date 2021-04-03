@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const cards = require('./routes/cards');
 const users = require('./routes/users');
+const { login, createUser } = require('./controllers/users');
 const errorHandler = require('./middlewares/error');
 const authHandler = require('./middlewares/auth');
 const notFoundHandler = require('./middlewares/resourceNotFound');
@@ -17,11 +19,18 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.post('/signin', login);
+app.post('/signup', createUser);
+
 app.use(authHandler);
+
 app.use('/cards', cards);
 app.use('/users', users);
+
 app.use(notFoundHandler);
 app.use(errorHandler);
 

@@ -1,5 +1,6 @@
 module.exports.errors = {
   email: {
+    unique: 'Пользователь с таким email уже существует',
     required: 'Поле \'email\' является обязательным',
     invalid: 'Email имеет неверный формат',
   },

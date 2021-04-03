@@ -1,8 +1,9 @@
 const HttpError = require('./HttpError');
 
 class ConflictError extends HttpError {
-  constructor(message) {
+  constructor(entries, message) {
     super(message, 409);
+    this.entries = entries;
   }
 }
 
