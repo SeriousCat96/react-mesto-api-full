@@ -1,0 +1,35 @@
+.profile__avatar {
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.profile__avatar::before {
+  content: '';
+  background: rgba(0, 0, 0, 0.8) center / cover no-repeat;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity .25s;
+}
+
+@media screen and (min-width: 1024px) {
+  .profile__avatar:hover {
+    cursor: pointer;
+  }
+  
+  .profile__avatar:hover::before {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__avatar {
+    margin: 0;
+    text-align: center;
+    gap: 14px 6px;
+  }
+}

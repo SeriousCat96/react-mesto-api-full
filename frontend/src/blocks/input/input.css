@@ -1,0 +1,22 @@
+@import url(./_type/input_type_error.css);
+
+.input {
+  padding: 13px 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.21;
+  box-sizing: border-box;
+  border: none;
+}
+
+.input:active, .input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 500px) {
+  .input {
+    font-size: 12px;
+    padding: 12px 0;
+  }
+}

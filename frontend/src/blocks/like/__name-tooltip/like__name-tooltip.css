@@ -1,0 +1,25 @@
+.like__name-tooltip {
+  visibility: hidden;
+  color: white;
+  background-color: #2a2c2f;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 10px 0 0;
+  /* width: 100%;
+  max-width: 100%; */
+  box-sizing: border-box;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 1.21;
+  overflow-wrap: break-word;
+  position: absolute;
+  z-index: 1;
+  top: 110%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.like:hover .like__name-tooltip {
+  visibility: visible;
+}

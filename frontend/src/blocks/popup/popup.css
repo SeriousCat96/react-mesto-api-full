@@ -1,0 +1,19 @@
+@import url(./_active/popup_active.css);
+@import url(./__view/popup__view.css);
+@import url(./__close-button/popup__close-button.css);
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, .5);
+  visibility: hidden;
+  opacity: 0;
+  cursor: pointer;
+  transition: visibility .3s, opacity .3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

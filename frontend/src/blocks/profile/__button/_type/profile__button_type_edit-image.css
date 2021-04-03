@@ -1,0 +1,24 @@
+.profile__button_type_edit-image {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: url(../../../../images/edit-icon.svg) center / 26px 26px no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profile__button.profile__button_type_edit-image {
+  border: none;
+}
+
+.profile__avatar:hover .profile__button_type_edit-image {
+  display: block;
+}
+
+@media screen and (min-width: 1024px) {
+  .button:hover.profile__button_type_edit-image {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,4 @@
+.picture-view__container {
+  display: flex;
+  position: relative;
+}

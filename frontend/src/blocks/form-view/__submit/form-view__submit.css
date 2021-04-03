@@ -1,0 +1,18 @@
+.form-view__submit {
+  color: white;
+  background: black;
+}
+
+.form-view__submit.submit_disabled {
+  background: transparent;
+}
+
+.form-view__field + .form-view__submit {
+  margin-top: 48px;
+}
+
+@media screen and (max-width: 500px) {
+  .form-view__field + .form-view__submit {
+    margin-top: 36px;
+  }
+}

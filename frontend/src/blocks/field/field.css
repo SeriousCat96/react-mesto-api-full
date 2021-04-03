@@ -1,0 +1,9 @@
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.field:last-of-type {
+  margin-bottom: 0;
+}

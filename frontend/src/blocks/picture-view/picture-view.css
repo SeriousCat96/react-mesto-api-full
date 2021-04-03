@@ -1,0 +1,11 @@
+@import url(./__image/picture-view__image.css);
+@import url(./__caption/picture-view__caption.css);
+@import url(./__container/picture-view__container.css);
+
+.picture-view {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

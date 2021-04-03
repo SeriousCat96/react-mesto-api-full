@@ -1,0 +1,12 @@
+.likes-view.likes-view_pos_top {
+  top: auto;
+  bottom: 150%;
+  left: 50%;
+}
+
+.likes-view.likes-view_pos_top::after {
+  content: "";
+  top: 100%;
+  bottom: auto;
+  border-color: #2a2c2f transparent transparent transparent;
+}

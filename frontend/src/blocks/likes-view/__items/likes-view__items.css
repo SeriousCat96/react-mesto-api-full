@@ -1,0 +1,16 @@
+.likes-view__items {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, 50px);
+  gap: 10px 10px;
+  max-width: 240px;
+}
+
+@media screen and (max-width: 767px) {
+  .likes-view__items {
+    grid-template-columns: repeat(auto-fit, 40px);
+    max-width: 100px;
+    gap: 5px 5px;
+  }
+}

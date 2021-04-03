@@ -1,0 +1,36 @@
+@import url(./_pos/likes-view_pos_top.css);
+@import url(./__title/likes-view__title.css);
+@import url(./__items/likes-view__items.css);
+
+.likes-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #2a2c2f;
+  border-radius: 5px;
+  z-index: 1;
+  padding: 10px;
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.likes-view::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #2a2c2f transparent;
+}
+
+@media screen and (max-width: 767px) {
+  .likes-view {
+    padding: 5px;
+  }
+}

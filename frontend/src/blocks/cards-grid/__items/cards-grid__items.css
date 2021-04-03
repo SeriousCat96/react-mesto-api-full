@@ -1,0 +1,9 @@
+.cards-grid__items {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-auto-flow: dense;
+  gap: 21px 18px;
+  width: 100%;
+  box-sizing: border-box;
+}

@@ -1,0 +1,26 @@
+@import url(./_disabled/submit_disabled.css);
+
+.submit {
+  width: 100%;
+  height: 50px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.22;
+  border-radius: 2px;
+  border: none;
+  margin: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .submit:hover {
+    opacity: .8;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .submit {
+    font-size: 14px;
+    line-height: 1.21;
+  }
+}

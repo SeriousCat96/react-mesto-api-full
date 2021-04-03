@@ -1,0 +1,15 @@
+@import url(./__title/auth__title.css);
+@import url(./__field/auth__field.css);
+@import url(./__form/auth__form.css);
+@import url(./__input/auth__input.css);
+@import url(./__submit/auth__submit.css);
+@import url(./__link/auth__link.css);
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 358px;
+  width: 100%;
+  flex: 1;
+}

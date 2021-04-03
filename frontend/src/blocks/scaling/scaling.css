@@ -1,0 +1,21 @@
+@-webkit-keyframes scale {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.scaling {
+  animation: scale .4s ease;
+}
