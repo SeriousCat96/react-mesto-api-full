@@ -1,27 +1,42 @@
 const mongoose = require('mongoose');
-const urlRegex = require('../utils/url').regex;
+const defaults = require('../utils/defaults');
+const errors = require('../utils/errors');
+const regex = require('../utils/regex');
 
 const userSchema = new mongoose.Schema(
   {
+    email: {
+      type: String,
+      unique: true,
+      validate: {
+        validator: (email) => regex.email.test(email),
+        message: errors.email.invalid,
+      },
+      required: [true, errors.email.required],
+    },
+    password: {
+      type: String,
+      required: [true, errors.password.required],
+    },
     name: {
       type: String,
-      minlength: 2,
-      maxlength: 30,
-      required: [true, 'Поле `name` является обязательным'],
+      minlength: [2, errors.name.minlength],
+      maxlength: [30, errors.name.maxlength],
+      default: defaults.name,
     },
     about: {
       type: String,
-      minlength: 2,
-      maxlength: 30,
-      required: [true, 'Поле `about` является обязательным'],
+      minlength: [2, errors.about.minlength],
+      maxlength: [30, errors.about.maxlength],
+      default: defaults.about,
     },
     avatar: {
       type: String,
       validate: {
-        validator: (link) => urlRegex.test(link),
-        message: (link) => `Ссылка ${link.value} имеет неверный формат`,
+        validator: (url) => regex.url.test(url),
+        message: errors.avatar.invalid,
       },
-      required: [true, 'Поле `avatar` является обязательным'],
+      default: defaults.avatar,
     },
   },
   {
