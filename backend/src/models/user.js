@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const defaults = require('../utils/defaults');
-const { errors } = require('../utils/errors');
+const { errors } = require('../utils/messages');
 const regex = require('../utils/regex');
 
 const userSchema = new mongoose.Schema(

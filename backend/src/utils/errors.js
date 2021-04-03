@@ -1,28 +1,28 @@
-module.exports.errors = {
-  email: {
-    required: 'Поле "email" является обязательным',
-    invalid: 'Email имеет неверный формат',
-  },
-  password: {
-    required: 'Поле "password" является обязательным',
-  },
-  name: {
-    required: 'Поле  является обязательным',
-    minlength: 'Имя должно содержать не менее 2 символов',
-    maxlength: 'Имя должно содержать не более 30 символов',
-  },
-  about: {
-    minlength: 'Поле "about" должно содержать не менее 2 символов',
-    maxlength: 'Поле "about" должно содержать не более 30 символов',
-  },
-  avatar: {
-    invalid: 'Ссылка имеет неверный формат',
-  },
-  link: {
-    invalid: 'Ссылка имеет неверный формат',
-    required: 'Поле "link" является обязательным',
-  },
-  owner: {
-    required: 'Поле "owner" является обязательным',
-  },
+const BadRequestError = require('../errors/BadRequestError');
+const ConflictError = require('../errors/ConflictError');
+const HttpError = require('../errors/HttpError');
+
+const MONGO_ERROR_CONFLICT = 11000;
+
+function getValidationMessage(err) {
+  return err.errors
+    ? Object.values(err.errors).join('; ')
+    : 'Введены некорректные данные';
+}
+
+module.exports.getError = (err, message) => {
+  if (err instanceof HttpError) return err;
+  if (err.code === MONGO_ERROR_CONFLICT) return new ConflictError(message || err);
+
+  switch (err.name) {
+    case 'CastError':
+      if (err.path === '_id') return new BadRequestError('Введен невалидный _id');
+      return new BadRequestError(message || err);
+
+    case 'ValidationError':
+      return new BadRequestError(getValidationMessage(err));
+
+    default:
+      return new Error(message);
+  }
 };
