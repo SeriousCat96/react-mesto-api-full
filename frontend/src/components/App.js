@@ -115,7 +115,7 @@ function App() {
       .then(() => {
         setUserEmail('');
         setIsLoggedIn(false);
-        history.push('/sign-in');
+        history.push('/signin');
       })
       .catch((err) => console.log(err)); 
   }
@@ -235,10 +235,10 @@ function App() {
             cards = {cards}
             component = {Main}
           />
-          <Route path="/sign-up">
+          <Route path="/signup">
             <Register handleRegister = {handleRegister} />
           </Route>
-          <Route path="/sign-in">
+          <Route path="/signin">
             <Login handleLogin={handleLogin} />
           </Route>
           <Route path="*">
