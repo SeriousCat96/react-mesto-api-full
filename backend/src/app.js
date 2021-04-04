@@ -26,7 +26,11 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONNECTION_STRING : 'mongodb://l
 });
 
 const options = {
-  origin: 'http://mestoservice.chickenkiller.com',
+  origin: [
+    'https://mestoservice.chickenkiller.com',
+    'https://seriouscat96.github.com',
+    'http://localhost:3000',
+  ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
   optionsSuccessStatus: 204,
