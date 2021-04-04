@@ -23,7 +23,9 @@ module.exports.deleteCard = (req, res, next) => Card.findById(req.params.cardId)
       throw new ForbiddenError(errors.http.forbidden.card);
     }
 
-    return Card.findByIdAndDelete(req.params.cardId);
+    return Card
+      .findByIdAndDelete(req.params.cardId)
+      .populate(['likes', 'owner']);
   })
   .then((card) => res.json(card))
   .catch((err) => {
