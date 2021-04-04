@@ -1,9 +1,5 @@
 export const formSelector = '.form';
 
-export const cardTemplateSelector = '#card-template';
-export const likesTemplateSelector = '#likes';
-export const likeTemplateSelector = '#like';
-
 export const authFormClass = 'auth__form';
 export const authInputClass = 'auth__input';
 export const authLabelClass = 'auth__field';
@@ -20,19 +16,14 @@ export const submitClass = 'submit';
 export const inactiveSubmitClass = 'submit_disabled';
 export const errorClass = 'error';
 export const errorActiveClass = 'error_visible';
-export const popupActiveClass = 'popup_active';
-export const spinnerClass = 'spinner';
-export const spinnerVisibleClass = 'spinner_visible';
 
-export const editAvatarBtn = document.querySelector('.profile__button.profile__button_type_edit-image');
-export const editProfileBtn = document.querySelector('.profile__button.profile__button_type_edit');
-export const addCardBtn = document.querySelector('.profile__button.profile__button_type_add');
-
-export const cardTemplate = document.querySelector(cardTemplateSelector);
 export const submitProcessDefaultText = 'Сохранение...';
 export const submitProcessRemoveText = 'Удаление...';
 
-export const baseUri = 'https://mesto.nomoreparties.co/v1/cohort-18';
+export const authSuccessTitle = 'Вы успешно зарегистрировались';
+export const authFailTitle = 'Что-то пошло не так! Попробуйте ещё раз.';
+
+export const baseUri = `${window.location.protocol}//${process.env.REACT_APP_API_URL || 'localhost:3001'}`;
 export const headers = {
-  authorization: 'e1917e0b-6d7d-4255-81d0-fb0ca13ea044'
+  'Content-Type': 'application/json; charset=utf-8'
 }

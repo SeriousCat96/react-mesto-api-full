@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const urlRegex = require('../utils/url').regex;
+const errors = require('../utils/messages');
+const regex = require('../utils/regex');
 
 const cardSchema = new mongoose.Schema(
   {
@@ -7,20 +8,20 @@ const cardSchema = new mongoose.Schema(
       type: String,
       minlength: 2,
       maxlength: 30,
-      required: [true, 'Поле `name` является обязательным'],
+      required: [true, errors.validation.name.required],
     },
     link: {
       type: String,
       validate: {
-        validator: (link) => urlRegex.test(link),
-        message: (link) => `Ссылка ${link.value} имеет неверный формат`,
+        validator: (link) => regex.url.test(link),
+        message: errors.validation.link.invalid,
       },
-      required: [true, 'Поле `link` является обязательным'],
+      required: [true, errors.validation.link.required],
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
-      required: [true, 'Поле `owner` является обязательным'],
+      required: [true, errors.validation.owner.required],
     },
     likes: [{
       type: mongoose.Schema.Types.ObjectId,

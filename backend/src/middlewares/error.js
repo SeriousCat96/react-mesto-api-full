@@ -1,4 +1,4 @@
-module.exports.errorHandler = (err, req, res, next) => {
+module.exports = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Ошибка сервера';
 

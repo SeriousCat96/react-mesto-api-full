@@ -14,11 +14,14 @@ import RemoveCardPopup from './Popups/RemoveCardPopup';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { api } from '../utils/api';
-import { auth } from '../utils/auth';
+import { authFailTitle, authSuccessTitle } from '../utils/constants';
+import successImg from '../images/success.png';
+import failImg from '../images/fail.png';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isAuthSuccess, setIsAuthSuccess] = React.useState(false);
+  const [authImg, setAuthImg] = React.useState(failImg);
+  const [authTitle, setAuthTitle] = React.useState(authFailTitle);
   const [userEmail, setUserEmail] = React.useState('');
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
@@ -40,20 +43,28 @@ function App() {
 
   const history = useHistory();
 
+  const fetchUserInfo = React.useCallback(
+    () => api
+      .getUserInfo()
+      .then((user) => {
+        setCurrentUser(user);
+        setUserEmail(user.email);
+        setIsLoggedIn(true);
+        history.push('/');
+      }),
+    [history]);
+
+  const fetchCards = () => {
+    return api
+      .getCards()
+      .then((cards) => setCards(cards));
+  }
+
   React.useEffect(
-    () => {
-      const token = localStorage.getItem('token');
-      if(token) {
-        auth.getMe(token)
-          .then((user) => {
-            setIsLoggedIn(true);
-            setUserEmail(user.data.email);
-            history.push('/');
-          })
-          .catch((err) => console.log(err));
-      }
-    },
-    [history]
+    () => fetchUserInfo()
+      .then(() => fetchCards())
+      .catch((err) => console.log(err)),
+    [fetchUserInfo]
   );
 
   React.useEffect(
@@ -73,86 +84,48 @@ function App() {
     []
   );
 
-  React.useEffect(() => {
-    console.debug("load initial data");
-    Promise.all([fetchUserInfo(), fetchCards()])
-      .then(
-        (data) => {
-          const [userInfo, cards] = data;
-          setCurrentUser(userInfo);
-          setCards(cards);
-        })
-      .catch((err) => console.error(err));
-  }, []);
-
   const handleRegister = (userData) => {
-    auth.signUp(userData)
+    api.signUp(userData)
       .then(() => {
-          setIsAuthSuccess(true);
+          setAuthImg(successImg);
+          setAuthTitle(authSuccessTitle);
           history.push('/');
       })
       .catch(err => {
         console.log(err);
-        setIsAuthSuccess(false);
+        setAuthImg(failImg);
+        setAuthTitle(authFailTitle);
       })
       .finally(() => setIsInfoTooltipActive(true)); 
   }
 
   const handleLogin = (userData) => {
-    auth.signIn(userData)
-      .then((token) => {
-        if (token) {
-          auth.getMe(token)
-            .then((user) => {
-              setUserEmail(user.data.email);
-              setIsLoggedIn(true);
-              history.push('/');
-            })
-            .catch((err) => {
-              console.log(err);
-              setIsAuthSuccess(false);
-              setIsInfoTooltipActive(true);
-            });
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          setIsAuthSuccess(false);
-          setIsInfoTooltipActive(true);
-        }); 
+    api.signIn(userData)
+      .then(() => fetchUserInfo())
+      .then(() => fetchCards()
+        .catch((err) => console.log(err)))
+      .catch(() => {
+        setAuthTitle(authFailTitle);
+        setIsInfoTooltipActive(true);
+      });
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setUserEmail('');
-    setIsLoggedIn(false);
-    history.push('/sign-in');
+    api.signOut()
+      .then(() => {
+        setUserEmail('');
+        setIsLoggedIn(false);
+        history.push('/sign-in');
+      })
+      .catch((err) => console.log(err)); 
   }
-
-  const fetchCards = () => {
-    return api
-      .getCards()
-      .then((items) => Promise.resolve(items))
-      .catch(() => Promise.reject("Failed to fetch cards."));
-  }
-
-  const fetchUserInfo = () => {
-    return api
-      .getUserInfo()
-      .then((userInfo) => Promise.resolve(userInfo))
-      .catch(() => Promise.reject("Failed to set user info."));
-  };
 
   const handleCardLike = (card) => {
     const isLiked = card.isUserLiked;
     const setLike = isLiked ? api.unlike.bind(api) : api.like.bind(api);
 
     setLike(card._id)
-      .then(
-        (newCard) => {
-          setCards(c => c.map((item) => item._id === card._id ? newCard : item));
-        }
-      )
+      .then((newCard) => setCards(c => c.map((item) => item._id === card._id ? newCard : item)))
       .catch((err) => console.error(err));
   };
 
@@ -195,11 +168,10 @@ function App() {
 
     api
       .addCard(values)
-      .then(
-        (newCard) => {
+      .then((newCard) => {
           setCards(c => [newCard, ...c]);
           handleCloseAllPopups();
-        })
+      })
       .catch(() => console.error("Failed to add card."))
       .finally(() => setAddCardProcessing(false));
   };
@@ -209,11 +181,10 @@ function App() {
 
     api
       .setAvatar(avatar)
-      .then(
-        (userInfo) => {
+      .then((userInfo) => {
           setCurrentUser(userInfo);
           handleCloseAllPopups();
-        })
+      })
       .catch(() => console.error("Failed to edit avatar."))
       .finally(() => setEditAvatarProcessing(false));  
   };
@@ -223,11 +194,10 @@ function App() {
 
     api
       .setUserInfo(userInfo)
-      .then(
-        (userInfo) => {
+      .then((userInfo) => {
           setCurrentUser(userInfo);
           handleCloseAllPopups();
-        })
+      })
       .catch(() => console.error("Failed to edit profile."))
       .finally(() => setEditProfileProcessing(false));  
   };
@@ -238,11 +208,10 @@ function App() {
 
       api
         .deleteCard(cardToRemove._id)
-        .then(
-          () => {
+        .then(() => {
             setCards(c => c.filter((item) => item._id !== cardToRemove._id));
             handleCloseAllPopups();
-          })
+        })
         .catch(() => console.error("Failed to remove card."))
         .finally(() => setRemoveCardProcessing(false));  
     }
@@ -277,7 +246,8 @@ function App() {
       </div>
       <InfoTooltip
         isActive = {isInfoTooltipActive}
-        isSuccess = {isAuthSuccess}
+        image = {authImg}
+        title = {authTitle}
         onClose = {handleCloseAllPopups}
       />
       <AddPlacePopup
