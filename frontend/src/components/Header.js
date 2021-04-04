@@ -7,7 +7,7 @@ function Header(props) {
   const location = useLocation();
 
   const linkText = location.pathname === '/signin' ? 'Регистрация' : 'Войти';
-  const linkPath = location.pathname === '/signin' ? 'signup' : '/signin';
+  const linkPath = location.pathname === '/signin' ? '/signup' : '/signin';
 
   return (
     <header className = "header page__section page__section_indent-size_s">

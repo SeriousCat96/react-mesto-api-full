@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "author": "Pavel Shevelev",
   "license": "ISC",
-  "homepage": "https://seriouscat96.github.io/",
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",

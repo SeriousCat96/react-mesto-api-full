@@ -28,13 +28,9 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONNECTION_STRING : 'mongodb://l
 const options = {
   origin: [
     'http://localhost:3000',
-    'https://mesto.nomoredomains.icu',
+    'http://mesto.nomoredomains.icu',
     'https://seriouscat96.github.io',
   ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'origin'],
   credentials: true,
 };
 app.use('*', cors(options));
@@ -55,11 +51,11 @@ app.use(authHandler);
 
 app.use('/cards', cards);
 app.use('/users', users);
+app.all('/*', notFoundHandler);
 
 app.use(errorLogger);
 app.use(errors());
 
-app.use(notFoundHandler);
 app.use(errorHandler);
 
 app.listen(PORT, () => {

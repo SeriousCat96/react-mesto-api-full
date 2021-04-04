@@ -1,5 +1,6 @@
+const NotFoundError = require('../errors/NotFoundError');
 const errors = require('../utils/messages');
 
-module.exports = (req, res) => res
-  .status(404)
-  .json({ message: errors.http.notFound.message });
+module.exports = () => {
+  throw new NotFoundError(errors.http.notFound.message);
+};
