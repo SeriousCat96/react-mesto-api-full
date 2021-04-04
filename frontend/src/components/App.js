@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import Main from './Main';
 import Header from './Header';
 import Footer from './Footer';
@@ -240,6 +240,9 @@ function App() {
           </Route>
           <Route path="/sign-in">
             <Login handleLogin={handleLogin} />
+          </Route>
+          <Route path="*">
+            <Redirect to="/" />
           </Route>
         </Switch>
         <Footer />
