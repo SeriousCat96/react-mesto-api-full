@@ -35,6 +35,12 @@ module.exports.http = {
       _id: 'Введен невалидный _id',
     },
   },
+  unauthorized: {
+    message: 'Необходима авторизация',
+  },
+  forbidden: {
+    card: 'Нельзя удалить чужую карточку',
+  },
   notFound: {
     format: (src) => `${src} не существует`,
   },
@@ -45,8 +51,5 @@ module.exports.http = {
       const postfix = entries.length > 1 ? 'существуют' : 'существует';
       return `${prefix} уже ${postfix}`;
     },
-  },
-  unauthorized: {
-    message: 'Необходима авторизация',
   },
 };
