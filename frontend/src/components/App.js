@@ -42,16 +42,13 @@ function App() {
 
   React.useEffect(
     () => {
-      const token = localStorage.getItem('token');
-      if(token) {
-        auth.getMe(token)
+      auth.getMe()
           .then((user) => {
             setIsLoggedIn(true);
-            setUserEmail(user.data.email);
+            setUserEmail(user.email);
             history.push('/');
           })
           .catch((err) => console.log(err));
-      }
     },
     [history]
   );
@@ -100,20 +97,18 @@ function App() {
 
   const handleLogin = (userData) => {
     auth.signIn(userData)
-      .then((token) => {
-        if (token) {
-          auth.getMe(token)
-            .then((user) => {
-              setUserEmail(user.data.email);
-              setIsLoggedIn(true);
-              history.push('/');
-            })
-            .catch((err) => {
-              console.log(err);
-              setIsAuthSuccess(false);
-              setIsInfoTooltipActive(true);
-            });
-          }
+      .then(() => {
+        auth.getMe()
+          .then((user) => {
+            setUserEmail(user.email);
+            setIsLoggedIn(true);
+            history.push('/');
+          })
+          .catch((err) => {
+            console.log(err);
+            setIsAuthSuccess(false);
+            setIsInfoTooltipActive(true);
+          });
         })
         .catch((err) => {
           console.log(err);
@@ -123,10 +118,13 @@ function App() {
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setUserEmail('');
-    setIsLoggedIn(false);
-    history.push('/sign-in');
+    auth.signOut()
+      .then(() => {
+        setUserEmail('');
+        setIsLoggedIn(false);
+        history.push('/sign-in');
+      })
+      .catch((err) => console.log(err)); 
   }
 
   const fetchCards = () => {

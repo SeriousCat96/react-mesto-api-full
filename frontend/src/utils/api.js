@@ -3,7 +3,6 @@ import { baseUri, headers } from './constants.js';
 const CARDS_URL ='/cards/';
 const USER_INFO_URL = '/users/me/';
 const AVATAR_URL = USER_INFO_URL + 'avatar/';
-const LIKE_URL = '/cards/likes/';
 
 /**
  * Класс для работы с API.
@@ -91,7 +90,7 @@ export default class Api {
    */
   like(cardId) {
     return this
-      ._sendJson(LIKE_URL + cardId, 'PUT', this._headers);
+      ._sendJson(CARDS_URL + cardId + '/likes', 'PUT', this._headers);
   }
 
   /**
@@ -102,13 +101,13 @@ export default class Api {
    */
   unlike(cardId) {
     return this
-      ._sendJson(LIKE_URL + cardId, 'DELETE', this._headers);
+      ._sendJson(CARDS_URL + cardId + '/likes', 'DELETE', this._headers);
   }
 
   _sendJson(url, method, headers, body) {
     const uri = this._baseUri + url;
 
-    return fetch(uri, { method, headers, body })
+    return fetch(uri, { method, headers, body, credentials: 'include' })
       .then(
         (response) => {
           console.debug(`${method} ${uri} status: ${response.status}`);
@@ -122,4 +121,4 @@ export default class Api {
   }
 }
 
-export const api = new Api({ baseUri, headers });
+export const api = new Api({ baseUri: baseUri, headers });

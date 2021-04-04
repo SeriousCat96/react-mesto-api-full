@@ -32,7 +32,7 @@ export const cardTemplate = document.querySelector(cardTemplateSelector);
 export const submitProcessDefaultText = 'Сохранение...';
 export const submitProcessRemoveText = 'Удаление...';
 
-export const baseUri = 'https://mesto.nomoreparties.co/v1/cohort-18';
+export const baseUri = 'http://localhost:3001';
 export const headers = {
   authorization: 'e1917e0b-6d7d-4255-81d0-fb0ca13ea044'
 }

@@ -27,7 +27,7 @@ module.exports.login = (req, res, next) => {
 
       return res
         .cookie('token', token, { maxAge: TOKEN_MAX_AGE, httpOnly: true, sameSite: true })
-        .end();
+        .send({});
     })
     .catch((err) => {
       throw getError(err);
@@ -37,7 +37,7 @@ module.exports.login = (req, res, next) => {
 
 module.exports.logout = (req, res) => res
   .cookie('token', '', { maxAge: -1, httpOnly: true, sameSite: true })
-  .end();
+  .send({});
 
 module.exports.createUser = (req, res, next) => {
   const {

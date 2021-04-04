@@ -1,3 +1,4 @@
+import { baseUri } from './constants';
 
 /**
  * Класс для работы с API авторизации.
@@ -10,11 +11,7 @@ export default class Auth {
 
   signIn(data) {
     return this
-      ._sendJson('/signin', 'POST', this._headers, JSON.stringify(data))
-      .then((data) => {
-        localStorage.setItem('token', data.token);
-        return data.token;
-      });
+      ._sendJson('/signin', 'POST', this._headers, JSON.stringify(data));
   }
 
   signUp(data) {
@@ -22,17 +19,20 @@ export default class Auth {
       ._sendJson('/signup', 'POST', this._headers, JSON.stringify(data));
   }
 
-  getMe(token) {
-  const headers = { ...this._headers, 'Authorization' : `Bearer ${token}` };
+  signOut() {
+    return this
+      ._sendJson('/signout', 'GET', this._headers);
+  }
 
+  getMe() {
   return this
-    ._sendJson('/users/me', 'GET', headers);
+    ._sendJson('/users/me', 'GET', this._headers);
 }
 
   _sendJson(url, method, headers, body) {
     const uri = this._baseUri + url;
 
-    return fetch(uri, { method, headers, body })
+    return fetch(uri, { method, headers, body, credentials: 'include' })
       .then(
         (response) => {
           console.debug(`${method} ${uri} status: ${response.status}`);
@@ -48,7 +48,7 @@ export default class Auth {
 
 export const auth = new Auth(
   {
-    baseUri: 'https://auth.nomoreparties.co',
+    baseUri,
     headers: { 'Content-Type': 'application/json' } 
   }
 );
