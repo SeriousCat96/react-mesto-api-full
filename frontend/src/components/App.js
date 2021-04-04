@@ -14,7 +14,6 @@ import RemoveCardPopup from './Popups/RemoveCardPopup';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { api } from '../utils/api';
-import { auth } from '../utils/auth';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -42,7 +41,7 @@ function App() {
 
   React.useEffect(
     () => {
-      auth.getMe()
+      api.getMe()
           .then((user) => {
             setIsLoggedIn(true);
             setUserEmail(user.email);
@@ -83,7 +82,7 @@ function App() {
   }, []);
 
   const handleRegister = (userData) => {
-    auth.signUp(userData)
+    api.signUp(userData)
       .then(() => {
           setIsAuthSuccess(true);
           history.push('/');
@@ -96,9 +95,9 @@ function App() {
   }
 
   const handleLogin = (userData) => {
-    auth.signIn(userData)
+    api.signIn(userData)
       .then(() => {
-        auth.getMe()
+        api.getMe()
           .then((user) => {
             setUserEmail(user.email);
             setIsLoggedIn(true);
@@ -118,7 +117,7 @@ function App() {
   }
 
   const handleLogout = () => {
-    auth.signOut()
+    api.signOut()
       .then(() => {
         setUserEmail('');
         setIsLoggedIn(false);

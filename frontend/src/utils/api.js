@@ -1,5 +1,8 @@
 import { baseUri, headers } from './constants.js';
 
+const SIGNIN_URL ='/signin';
+const SIGNUP_URL ='/signup';
+const SIGNOUT_URL ='/signout';
 const CARDS_URL ='/cards/';
 const USER_INFO_URL = '/users/me/';
 const AVATAR_URL = USER_INFO_URL + 'avatar/';
@@ -13,6 +16,48 @@ export default class Api {
     this._headers = headers;
   }
   
+  /**
+   * Залогиниться на сервере
+   * 
+   * @param {Object} data учётные данные пользователя.
+   * @returns {Promise} Результат запроса.
+   */
+  signIn(data) {
+    return this
+      ._sendJson(SIGNIN_URL, 'POST', this._headers, JSON.stringify(data));
+  }
+
+  /**
+   * Зарегестрировать нового пользователя
+   * 
+   * @param {Object} data учётные данные пользователя.
+   * @returns {Promise} Результат запроса.
+   */
+  signUp(data) {
+    return this
+      ._sendJson(SIGNUP_URL, 'POST', this._headers, JSON.stringify(data));
+  }
+
+  /**
+   * Разлогиниться на сервере
+   * 
+   * @returns {Promise} Результат запроса.
+   */
+  signOut() {
+    return this
+      ._sendJson(SIGNOUT_URL, 'GET', this._headers);
+  }
+
+  /**
+   * Получить текущего пользователя
+   * 
+   * @returns {Promise} Результат запроса.
+   */
+  getMe() {
+  return this
+    ._sendJson('/users/me', 'GET', this._headers);
+  }
+
   /**
    * Добавить карточку.
    * 
