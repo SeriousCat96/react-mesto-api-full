@@ -26,7 +26,7 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONNECTION_STRING : 'mongodb://l
 });
 
 const options = {
-  origin: 'http://mesto.nomoredomains.icu',
+  origin: 'http://mestoservice.chickenkiller.com',
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
   optionsSuccessStatus: 204,
