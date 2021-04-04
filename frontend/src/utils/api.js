@@ -49,16 +49,6 @@ export default class Api {
   }
 
   /**
-   * Получить текущего пользователя
-   * 
-   * @returns {Promise} Результат запроса.
-   */
-  getMe() {
-  return this
-    ._sendJson('/users/me', 'GET', this._headers);
-  }
-
-  /**
    * Добавить карточку.
    * 
    * @param {Object} cardData Данные карточки.
@@ -161,7 +151,7 @@ export default class Api {
             return response.json();
           }
           
-          return Promise.reject();
+          return Promise.reject('Ошибка запроса');
         });
   }
 }

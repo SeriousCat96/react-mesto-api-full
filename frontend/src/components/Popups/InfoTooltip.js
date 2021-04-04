@@ -1,11 +1,8 @@
 import React from 'react';
 import Popup from '../Popup';
-import success from '../../images/success.png';
-import fail from '../../images/fail.png';
 
-function InfoTooltip({isActive, isSuccess, onClose}) {
-  const img = isSuccess ? success : fail;
-  const title = isSuccess ? 'Вы успешно зарегистрировались' : 'Что-то пошло не так! Попробуйте ещё раз.'
+function InfoTooltip({isActive, image, title, onClose}) {
+
   return (
     <Popup
       id = "info-tooltip"
@@ -19,7 +16,7 @@ function InfoTooltip({isActive, isSuccess, onClose}) {
         onClick = {onClose}
       />
       <div className = "form-view__register">
-        <img className = "form-view__image" alt = "Статус регистрации" src = {img} />
+        <img className = "form-view__image" alt = "Статус регистрации" src = {image} />
         <h2 className="form-view__title">{title}</h2>
       </div>
     </Popup>

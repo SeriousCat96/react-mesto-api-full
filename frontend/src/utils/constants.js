@@ -20,6 +20,9 @@ export const errorActiveClass = 'error_visible';
 export const submitProcessDefaultText = 'Сохранение...';
 export const submitProcessRemoveText = 'Удаление...';
 
+export const authSuccessTitle = 'Вы успешно зарегистрировались';
+export const authFailTitle = 'Что-то пошло не так! Попробуйте ещё раз.';
+
 export const baseUri = `${window.location.protocol}//${process.env.REACT_APP_API_URL || 'localhost:3001'}`;
 export const headers = {
   'Content-Type': 'application/json; charset=utf-8'
