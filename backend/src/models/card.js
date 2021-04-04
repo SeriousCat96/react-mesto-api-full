@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { errors } = require('../utils/messages');
+const errors = require('../utils/messages');
 const regex = require('../utils/regex');
 
 const cardSchema = new mongoose.Schema(
@@ -8,20 +8,20 @@ const cardSchema = new mongoose.Schema(
       type: String,
       minlength: 2,
       maxlength: 30,
-      required: [true, errors.name.required],
+      required: [true, errors.validation.name.required],
     },
     link: {
       type: String,
       validate: {
         validator: (link) => regex.url.test(link),
-        message: errors.link.invalid,
+        message: errors.validation.link.invalid,
       },
-      required: [true, errors.link.required],
+      required: [true, errors.validation.link.required],
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
-      required: [true, errors.owner.required],
+      required: [true, errors.validation.owner.required],
     },
     likes: [{
       type: mongoose.Schema.Types.ObjectId,

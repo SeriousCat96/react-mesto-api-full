@@ -3,42 +3,42 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 const defaults = require('../utils/defaults');
-const { errors } = require('../utils/messages');
+const errors = require('../utils/messages');
 const regex = require('../utils/regex');
 
 const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      unique: [true, errors.email.unique],
+      unique: [true, errors.validation.email.unique],
       validate: {
         validator: (email) => regex.email.test(email),
-        message: errors.email.invalid,
+        message: errors.validation.email.invalid,
       },
-      required: [true, errors.email.required],
+      required: [true, errors.validation.email.required],
     },
     password: {
       type: String,
-      required: [true, errors.password.required],
+      required: [true, errors.validation.password.required],
       select: false,
     },
     name: {
       type: String,
-      minlength: [2, errors.name.minlength],
-      maxlength: [30, errors.name.maxlength],
+      minlength: [2, errors.validation.name.minlength],
+      maxlength: [30, errors.validation.name.maxlength],
       default: defaults.name,
     },
     about: {
       type: String,
-      minlength: [2, errors.about.minlength],
-      maxlength: [30, errors.about.maxlength],
+      minlength: [2, errors.validation.about.minlength],
+      maxlength: [30, errors.validation.about.maxlength],
       default: defaults.about,
     },
     avatar: {
       type: String,
       validate: {
         validator: (url) => regex.url.test(url),
-        message: errors.avatar.invalid,
+        message: errors.validation.avatar.invalid,
       },
       default: defaults.avatar,
     },
