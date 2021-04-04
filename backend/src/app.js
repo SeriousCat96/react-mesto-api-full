@@ -28,8 +28,8 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONNECTION_STRING : 'mongodb://l
 const options = {
   origin: [
     'http://localhost:3000',
-    'https://ваш домен с документа',
-    'https://seriouscat.github.io',
+    'https://mesto.nomoredomains.icu',
+    'https://seriouscat96.github.io',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
