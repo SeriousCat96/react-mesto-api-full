@@ -7,9 +7,9 @@ class BadRequestError extends HttpError {
   }
 
   static fromValidationError(err, fallback = errors.http.badRequest.message) {
-    return err.errors
+    return new BadRequestError(err.errors
       ? Object.values(err.errors).join('; ')
-      : fallback;
+      : fallback);
   }
 }
 
