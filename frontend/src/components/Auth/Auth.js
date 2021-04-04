@@ -38,7 +38,7 @@ function Auth(props) {
         labelClass = {authLabelClass}
         inactiveSubmitClass = {inactiveSubmitClass}
       />
-      {location.pathname === '/sign-up' && <Link to ="/sign-in" className="auth__link">Уже зарегестрированы? Войти</Link>}
+      {location.pathname === '/signup' && <Link to ="/signin" className="auth__link">Уже зарегестрированы? Войти</Link>}
     </section>
   );
 }

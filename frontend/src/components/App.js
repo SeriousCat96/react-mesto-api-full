@@ -223,7 +223,7 @@ function App() {
       <div className = "page">
         <Header isLoggedIn = {isLoggedIn} userEmail = {userEmail} onLogout = {handleLogout} />
         <Switch>
-          <ProtectedRoute exact path="/"
+          <ProtectedRoute exact path ="/"
             isLoggedIn = {isLoggedIn}
             onAddPlacePopupOpen = {handleAddPlacePopupOpen}
             onEditAvatarPopupOpen = {handleEditAvatarPopupOpen}
@@ -235,14 +235,14 @@ function App() {
             cards = {cards}
             component = {Main}
           />
-          <Route path="/signup">
+          <Route path = "/signup">
             <Register handleRegister = {handleRegister} />
           </Route>
-          <Route path="/signin">
+          <Route path = "/signin">
             <Login handleLogin={handleLogin} />
           </Route>
-          <Route path="*">
-            <Redirect to="/" />
+          <Route path = "*">
+            <Redirect to = "/" />
           </Route>
         </Switch>
         <Footer />
