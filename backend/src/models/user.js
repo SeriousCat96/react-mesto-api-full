@@ -15,10 +15,13 @@ const userSchema = new mongoose.Schema(
         validator: (email) => regex.email.test(email),
         message: errors.validation.email.invalid,
       },
+      minlength: [3, errors.validation.email.minlength],
+      maxlength: [320, errors.validation.email.maxlength],
       required: [true, errors.validation.email.required],
     },
     password: {
       type: String,
+      minlength: [6, errors.validation.password.minlength],
       required: [true, errors.validation.password.required],
       select: false,
     },

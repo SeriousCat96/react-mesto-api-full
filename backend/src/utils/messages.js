@@ -2,9 +2,12 @@ module.exports.validation = {
   email: {
     unique: 'Пользователь с таким email уже существует',
     required: 'Поле \'email\' является обязательным',
+    minlength: 'Email должнен содержать не менее 3 символов',
+    maxlength: 'Email должнен содержать не более 320 символов',
     invalid: 'Email имеет неверный формат',
   },
   password: {
+    minlength: 'Пароль должнен содержать не менее 6 символов',
     required: 'Поле \'password\' является обязательным',
   },
   name: {
@@ -42,6 +45,7 @@ module.exports.http = {
     card: 'Нельзя удалить чужую карточку',
   },
   notFound: {
+    message: 'Запрашиваемый ресурс не найден',
     format: (src) => `${src} не существует`,
   },
   conflict: {
