@@ -17,4 +17,5 @@ Frontend:
 * Структура организована согласно [БЭМ](https://ru.bem.info/).
 
 Сервис доступен по адресу https://mestoservice.chickenkiller.com/
+Адрес API: https://api.mestoservice.chickenkiller.com/
 Публичный IP: 84.201.152.197
