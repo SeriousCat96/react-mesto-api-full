@@ -9,6 +9,9 @@ Backend:
 
 * Node.js
 * Express
+* JWT авторизация
+* Winston Logger
+* Joi, celebrate валидация
 * NoSQL СУБД MongoDB
 
 Frontend:
