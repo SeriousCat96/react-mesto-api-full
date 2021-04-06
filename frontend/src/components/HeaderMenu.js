@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuToggle from './MenuToggle';
-import { NavLink, Route, Switch, } from 'react-router-dom';
+import { NavLink, Route, Switch, Redirect } from 'react-router-dom';
 
 function HeaderMenu({ userEmail, onLogout }) {
   return userEmail ? (
@@ -27,6 +27,9 @@ function HeaderMenu({ userEmail, onLogout }) {
             </Route>
             <Route exact path = "/signup">
               <NavLink to = "/signin" className = "link header__link">Войти</NavLink>
+            </Route>
+            <Route path = "*">
+              <Redirect to = "/signin" />
             </Route>
           </Switch>
         </li>
