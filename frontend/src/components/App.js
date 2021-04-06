@@ -221,7 +221,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className = "page">
-        <Header isLoggedIn = {isLoggedIn} userEmail = {userEmail} onLogout = {handleLogout} />
+        <Header userEmail = {userEmail} onLogout = {handleLogout} />
         <Switch>
           <ProtectedRoute exact path ="/"
             isLoggedIn = {isLoggedIn}

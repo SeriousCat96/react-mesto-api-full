@@ -1,9 +1,9 @@
 import React from 'react';
 import MenuToggle from './MenuToggle';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route, Switch, } from 'react-router-dom';
 
-function HeaderMenu({ isLoggedIn, userEmail, linkPath, linkText, onLogout }) {
-  return isLoggedIn ? (
+function HeaderMenu({ userEmail, onLogout }) {
+  return userEmail ? (
     <>
       <MenuToggle />
       <div className = "header__menu">
@@ -21,7 +21,14 @@ function HeaderMenu({ isLoggedIn, userEmail, linkPath, linkText, onLogout }) {
     <nav className = "header__menu">
       <ul className = "list header__menu-items">
         <li>
-          <NavLink to={linkPath} className="link header__link">{linkText}</NavLink>
+          <Switch>
+            <Route exact path = "/signin">
+              <NavLink to = "/signup" className = "link header__link">Регистрация</NavLink>
+            </Route>
+            <Route exact path = "/signup">
+              <NavLink to = "/signin" className = "link header__link">Войти</NavLink>
+            </Route>
+          </Switch>
         </li>
       </ul>
     </nav>
