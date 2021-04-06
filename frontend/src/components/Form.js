@@ -52,6 +52,7 @@ function Form(props) {
             maxLength = {input.maxLength}
             value = {values[input.name] || ''}
             error = {errors[input.name]}
+            autocomplete = {input.autocomplete}
             isInvalid = {errors[input.name] !== undefined && errors[input.name] !== ''}
             onChange = {handleChange}
             inputClass = {inputClass}

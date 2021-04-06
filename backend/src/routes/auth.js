@@ -1,10 +1,12 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const { login, logout, createUser } = require('../controllers/auth');
+const regex = require('../utils/regex');
 
 router.post('/signin', celebrate({
   body: Joi.object().keys({
-    email: Joi.string().trim()
+    email: Joi.string()
+      .email()
       .required()
       .min(3)
       .max(320),
@@ -16,7 +18,8 @@ router.post('/signin', celebrate({
 
 router.post('/signup', celebrate({
   body: Joi.object().keys({
-    email: Joi.string().trim()
+    email: Joi.string()
+      .email()
       .required()
       .min(3)
       .max(320),
@@ -29,7 +32,8 @@ router.post('/signup', celebrate({
     about: Joi.string().trim()
       .min(2)
       .max(30),
-    avatar: Joi.string().trim().uri(),
+    avatar: Joi.string().trim()
+      .regex(regex.url),
   }),
 }), createUser);
 

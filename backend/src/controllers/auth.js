@@ -36,7 +36,7 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.logout = (req, res) => res
-  .cookie('token', '', { maxAge: -1, httpOnly: true, sameSite: true })
+  .cookie('token', { maxAge: 0 })
   .send({});
 
 module.exports.createUser = (req, res, next) => {

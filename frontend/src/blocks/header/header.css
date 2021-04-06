@@ -1,6 +1,6 @@
 @import url(./__logo/header__logo.css);
-@import url(./__auth/header__auth.css);
-@import url(./__button/header__button.css);
+@import url(./__toggle/header__toggle.css);
+@import url(./__menu/header__menu.css);
 @import url(./__link/header__link.css);
 @import url(./__text/header__text.css);
 

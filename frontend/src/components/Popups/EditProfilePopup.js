@@ -12,7 +12,7 @@ function EditProfilePopup(props) {
       type: 'text',
       placeholder: 'Имя',
       minLength: 2,
-      maxLength: 40,
+      maxLength: 30,
       value: name,
       required: true,
     },
@@ -22,7 +22,7 @@ function EditProfilePopup(props) {
       type: 'text',
       placeholder: 'О себе',
       minLength: 2,
-      maxLength: 200,
+      maxLength: 30,
       value: about,
       required: true,
     }

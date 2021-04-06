@@ -19,6 +19,7 @@ function Auth(props) {
       type: 'password',
       placeholder: 'Пароль',
       minLength: 6,
+      autocomplete: 'off',
       required: true,
     }
   ], []);

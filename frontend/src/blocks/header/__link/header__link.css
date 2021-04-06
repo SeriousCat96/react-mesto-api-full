@@ -1,15 +1,8 @@
 .header__link {
   margin: 0;
-  text-decoration: none;
   color: white;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 1.22;
-}
-
-@media screen and (min-width: 1024px) {
-  .header__link:hover {
-    opacity: .6;
-  }
 }

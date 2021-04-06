@@ -23,7 +23,9 @@ export const submitProcessRemoveText = 'Удаление...';
 export const authSuccessTitle = 'Вы успешно зарегистрировались';
 export const authFailTitle = 'Что-то пошло не так! Попробуйте ещё раз.';
 
-export const baseUri = `${window.location.protocol}//${process.env.REACT_APP_API_URL || 'localhost:3001'}`;
+export const baseUri = `${window.location.protocol}//${process.env.NODE_ENV  === 'production' 
+  ? process.env.REACT_APP_API_URL 
+  : `${window.location.hostname}:${process.env.REACT_APP_API_PORT || 3001}`}`;
 export const headers = {
   'Content-Type': 'application/json; charset=utf-8'
 }

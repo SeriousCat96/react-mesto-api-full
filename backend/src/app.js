@@ -1,6 +1,5 @@
 require('dotenv').config();
 
-const { NODE_ENV, DB_CONNECTION_STRING } = process.env;
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -14,11 +13,12 @@ const errorHandler = require('./middlewares/error');
 const authHandler = require('./middlewares/auth');
 const notFoundHandler = require('./middlewares/resourceNotFound');
 
-const { PORT = 3001 } = process.env;
+const { NODE_ENV, DB_CONNECTION_STRING, PORT = 3001 } = process.env;
 
 const app = express();
 
-mongoose.connect(NODE_ENV === 'production' ? DB_CONNECTION_STRING : 'mongodb://localhost:27017/mestodb', {
+const defaultDbConnectionString = 'mongodb://localhost:27017/mestodb';
+mongoose.connect(NODE_ENV === 'production' ? DB_CONNECTION_STRING || defaultDbConnectionString : defaultDbConnectionString, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -28,12 +28,12 @@ mongoose.connect(NODE_ENV === 'production' ? DB_CONNECTION_STRING : 'mongodb://l
 const options = {
   origin: [
     'https://mestoservice.chickenkiller.com',
+    'http://mestoservice.chickenkiller.com',
     'http://localhost:3000',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
   optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'origin'],
   credentials: true,
 };
 app.use('*', cors(options));

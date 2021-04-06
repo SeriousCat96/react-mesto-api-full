@@ -12,6 +12,7 @@ function Input(props) {
     maxLength,
     placeholder,
     value,
+    autocomplete,
     isInvalid,
     required,
     onChange,
@@ -31,6 +32,7 @@ function Input(props) {
         minLength = {minLength}
         maxLength = {maxLength}
         placeholder = {placeholder}
+        autoComplete = {autocomplete}
         onChange = {onChange}
         value = {value}
         required = {required}

@@ -7,7 +7,8 @@
 
 Backend:
 
-* express.js
+* Node.js
+* Express
 * NoSQL СУБД MongoDB
 
 Frontend:
