@@ -29,7 +29,7 @@ function HeaderMenu({ userEmail, onLogout }) {
               <NavLink to = "/signin" className = "link header__link">Войти</NavLink>
             </Route>
             <Route path = "*">
-              <Redirect to = "/signin" />
+              <Redirect to = "./signin" />
             </Route>
           </Switch>
         </li>
