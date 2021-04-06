@@ -1,14 +1,18 @@
 @import url(./__logo/header__logo.css);
-@import url(./__toggle/header__toggle.css);
 @import url(./__menu/header__menu.css);
+@import url(./__email/header__email.css);
+@import url(./__menu-items/header__menu-items.css);
 @import url(./__link/header__link.css);
-@import url(./__text/header__text.css);
 
 .header {
-  display: flex;
   width: 100%;
   padding-top: 45px;
   position: relative;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: repeat(2, minmax(min-content, max-content));
+  grid-auto-flow: dense;
 }
 
 .header::after {
@@ -21,8 +25,16 @@
   bottom: 0;
 }
 
+@media screen and (max-width: 1080px) {
+  .header {
+    padding: 28px 27px 0;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .header {
-    padding-top: 28px;
+    padding: 28px 0 0;
+    box-sizing: content-box;
+    max-width: 767px;
   }
 }

@@ -1,0 +1,14 @@
+.header__email {
+  margin: 0 24px 0 0;
+  color: white;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.22;
+}
+
+@media screen and (max-width: 767px) {
+  .toggle:checked ~ .header__menu .header__email {
+    margin: 0 0 18px 0;
+  }
+}

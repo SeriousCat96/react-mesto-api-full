@@ -1,0 +1,46 @@
+.toggle__button .toggle__icon {
+  display: block;
+  height: 3px;
+  position: relative;
+  width: 24px;
+  background-color: white;
+  margin-top: 9px;
+}
+
+.toggle__button .toggle__icon::before,
+.toggle__button .toggle__icon::after {
+  content: '';
+  display: block;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.toggle__button .toggle__icon::before {
+  top: 9px;
+}
+
+.toggle__button .toggle__icon::after {
+  top: -9px;
+}
+
+.toggle:checked ~ .toggle__button .toggle__icon {
+  background: transparent;
+}
+
+.toggle:checked ~ .toggle__button .toggle__icon::before {
+  transform: rotate(-45deg);
+  width: 30px;
+}
+
+.toggle:checked ~ .toggle__button .toggle__icon::after {
+  transform: rotate(45deg);
+  width: 30px;
+}
+
+.toggle:checked ~ .toggle__button:not(.steps) .toggle__icon::before,
+.toggle:checked ~ .toggle__button:not(.steps) .toggle__icon::after {
+  top: 0;
+}

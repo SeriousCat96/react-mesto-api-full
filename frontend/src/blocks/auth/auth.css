@@ -6,10 +6,17 @@
 @import url(./__link/auth__link.css);
 
 .auth {
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   max-width: 358px;
   width: 100%;
   flex: 1;
+}
+
+@media screen and (max-width: 500px) {
+  .auth {
+      padding: 0 30px;
+  }
 }

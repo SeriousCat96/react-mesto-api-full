@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import Menu from './Menu';
+import HeaderMenu from './HeaderMenu';
 import logo from '../images/logo.svg';
 
 function Header(props) {
@@ -8,15 +8,11 @@ function Header(props) {
 
   const linkText = location.pathname === '/signin' ? 'Регистрация' : 'Войти';
   const linkPath = location.pathname === '/signin' ? '/signup' : '/signin';
-
+  
   return (
     <header className = "header page__section page__section_indent-size_s">
       <img src = {logo} className = "header__logo" alt = "logo"/>
-      <Menu
-        {...props}
-        linkText = {linkText}
-        linkPath = {linkPath}
-      />
+      <HeaderMenu {...props} linkText = {linkText} linkPath = {linkPath} />
     </header>
   )
 }

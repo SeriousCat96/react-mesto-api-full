@@ -1,5 +1,41 @@
 .header__menu {
   display: flex;
-  align-items: flex-start;
-  margin-left: auto;
+  position: relative;
+  justify-content: flex-end;
+  width: 100%;
+  visibility: visible;
+  overflow: hidden;
+}
+
+.toggle:checked ~ .header__menu {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+@media screen and (max-width: 767px) {
+  .header__menu {
+    visibility: hidden;
+    max-height: 0;
+  }
+
+  .header__menu:nth-child(2) {
+    display: flex;
+    visibility: visible;
+    max-height: none;
+  }
+
+  .toggle:checked ~ .header__menu {
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: max-height .3s ease-out;
+    max-height: 500px;
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border-bottom: 1px solid rgba(84,84,84, .7);
+    padding-bottom: 40px;
+    margin-bottom: 27px;
+  }
 }

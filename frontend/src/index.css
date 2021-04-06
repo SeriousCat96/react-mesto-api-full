@@ -7,6 +7,7 @@
 @import url(./blocks/auth/auth.css);
 @import url(./blocks/link/link.css);
 @import url(./blocks/header/header.css);
+@import url(./blocks/toggle/toggle.css);
 @import url(./blocks/content/content.css);
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/text-ellipsis/text-ellipsis.css);

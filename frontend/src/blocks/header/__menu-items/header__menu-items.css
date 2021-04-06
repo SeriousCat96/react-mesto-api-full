@@ -1,0 +1,27 @@
+.header .header__menu-items {
+  display: grid;
+  grid-auto-flow: row;
+  margin-right: 30px;
+}
+
+.toggle:checked ~ .header__menu .header__menu-items {
+  row-gap: 18px;
+  justify-items: center;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .header .header__menu-items {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 18px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin-right: 0;
+  }
+
+  .toggle:checked ~ .header__menu .header__menu-items {
+    align-items: flex-start;
+    margin-top: 0;
+  }
+}
