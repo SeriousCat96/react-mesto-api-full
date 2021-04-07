@@ -15,11 +15,11 @@ function EditAvatarPopup(props) {
       isActive = {isActive}
       inputs = {[
         {
-            id: 'avatar-link',
-            name: 'avatar',
-            type: 'url',
-            placeholder: 'Ссылка на картинку',
-            required: true,
+          id: 'avatar-link',
+          name: 'avatar',
+          type: 'url',
+          placeholder: 'Ссылка на картинку',
+          required: true,
         }
       ]}
       onSubmit = {onEditAvatar}

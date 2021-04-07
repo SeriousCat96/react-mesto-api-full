@@ -129,17 +129,11 @@ function App() {
       .catch((err) => console.error(err));
   };
 
-  const handleAddPlacePopupOpen = () => {
-    setIsAddPlacePopupActive(true);
-  };
+  const handleAddPlacePopupOpen = () => setIsAddPlacePopupActive(true);
 
-  const handleEditAvatarPopupOpen = () => {
-    setIsEditAvatarPopupActive(true);
-  };
+  const handleEditAvatarPopupOpen = () => setIsEditAvatarPopupActive(true);
 
-  const handleEditProfilePopupOpen = () => {
-    setIsEditProfilePopupActive(true);
-  };
+  const handleEditProfilePopupOpen = () => setIsEditProfilePopupActive(true);
 
   const handleRemoveCardPopupOpen = (cardToRemove) => {
     setIsRemoveCardPopupActive(true);
@@ -163,11 +157,11 @@ function App() {
     setSelectedCard({});
   };
 
-  const handleAddPlace = (values) => {
+  const handleAddPlace = (card) => {
     setAddCardProcessing(true);
 
     api
-      .addCard(values)
+      .addCard(card)
       .then((newCard) => {
           setCards(c => [newCard, ...c]);
           handleCloseAllPopups();
@@ -195,8 +189,8 @@ function App() {
     api
       .setUserInfo(userInfo)
       .then((userInfo) => {
-          setCurrentUser(userInfo);
-          handleCloseAllPopups();
+        setCurrentUser(userInfo);
+        handleCloseAllPopups();
       })
       .catch(() => console.error("Failed to edit profile."))
       .finally(() => setEditProfileProcessing(false));  
@@ -209,8 +203,8 @@ function App() {
       api
         .deleteCard(cardToRemove._id)
         .then(() => {
-            setCards(c => c.filter((item) => item._id !== cardToRemove._id));
-            handleCloseAllPopups();
+          setCards(c => c.filter((item) => item._id !== cardToRemove._id));
+          handleCloseAllPopups();
         })
         .catch(() => console.error("Failed to remove card."))
         .finally(() => setRemoveCardProcessing(false));  

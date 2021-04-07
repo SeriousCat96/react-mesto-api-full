@@ -15,11 +15,11 @@ function AddPlacePopup(props) {
       required: true,
     },
     {
-        id: 'card-link',
-        name: 'link',
-        type: 'url',
-        placeholder: 'Ссылка на картинку',
-        required: true,
+      id: 'card-link',
+      name: 'link',
+      type: 'url',
+      placeholder: 'Ссылка на картинку',
+      required: true,
     }
   ], []);
 

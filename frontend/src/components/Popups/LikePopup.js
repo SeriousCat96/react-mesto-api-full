@@ -11,12 +11,7 @@ function LikePopup(props) {
 
   const getPosition = (popup) => {
     const popupBounds = popup.current.getBoundingClientRect();
-
-    if (popupBounds.bottom > window.innerHeight) {
-      setIsTop(true);
-    } else {
-      setIsTop(false);
-    }
+    setIsTop(popupBounds.bottom > window.innerHeight);
   };
 
   React.useEffect(

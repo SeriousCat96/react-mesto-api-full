@@ -10,12 +10,7 @@ function Like(props) {
 
   const getTooltipPosition = (tooltip) => {
     const tooltipBounds = tooltip.current.getBoundingClientRect();
-
-    if (tooltipBounds.right > window.outerWidth) {
-      setIsToolTipOverflow(true);
-    } else {
-      setIsToolTipOverflow(false);
-    }
+    setIsToolTipOverflow(tooltipBounds.right > window.outerWidth);
   };
 
   React.useEffect(
